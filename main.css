@@ -1,9 +1,12 @@
 *{
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+
   }
   body{ 
-    background-color: aliceblue;
+    background-color: #caf7e3;
+    overflow-x: hidden;
   }
   
 #logo{ 
@@ -15,6 +18,42 @@
 
 }
 
+a{ 
+  text-decoration:none;
+  color: black;
+  font-family: 'Lato', sans-serif;
+
+}
+
+
+.languages{ 
+  border-radius: 10px 10px 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50%;
+  transform: translate(-50%) ;
+  text-align:center ;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  font-size: auto;
+  text-decoration:none;
+  width: 90%;
+}
+a:visited {
+  color: black;
+  text-decoration:none;
+  border-radius: 10px 10px 10px 10px;
+
+}
+
+.active{ 
+  border-radius: 10px 10px 10px 10px;
+  background: #f05945;
+  color: aliceblue;
+  width: 25%;
+}
   #title{ 
     font-family: 'Lobster', cursive;
       font-size: 5rem;
@@ -24,7 +63,7 @@
   #subtitle{ 
       margin-top: 1rem;
       font-family: 'Lobster', cursive;
-     font-size: 5vw;
+     font-size: 12vw;
     text-align: center;
     text-decoration: underline;}
 
@@ -35,4 +74,18 @@
     list-style: none;
     text-align: center;
     font-size: 5vw;
+}
+
+
+.button{ 
+  position:sticky;
+  bottom:5%;
+  left: 85%;
+  width: 100px;
+  height: 100px;
+  border-radius:50%;
+  font-size: 19px;
+  font-weight: 600;
+  border: none;
+  background: #1c7ece;
 }
