@@ -49,7 +49,7 @@ a{
   text-decoration: none;
   font-weight: bold;
   background: none;
-  font-size: auto;
+  font-size: 3vw;
   text-decoration:none;
   width:80%;
 }
@@ -64,7 +64,7 @@ a:visited {
   border-radius: 10px 10px 10px 10px;
   background: #f05945;
   color: aliceblue;
-  width: 100px;
+  width: auto;
 }
   #title{ 
     font-family: 'Lobster', cursive;
