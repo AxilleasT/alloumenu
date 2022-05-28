@@ -13,74 +13,85 @@
 </head>
 <body>
     
-    <!--- <div id="title">  Allou Beach bar </div> --> 
-    <img src="logo.png" id="logo" alt="Logo"> <br> 
+   
    
     <br> <br>
 <div class="container"> 
 <div id="subtitle"> Menu </div>    
 
-    <button class="accordion">Coffee</button>
+    <button class="accordion">ΚΑΦΕΣ / COFFEE</button>
     <div class="panel">
       <ul class="list"> 
-          <li>freddo</li> 
-          <li>freddo</li>
-          <li>freddo</li>
-          <li>freddo</li>
-          <li>freddo</li>
+          <li>Ελληνικός Μονός / Greek Coffe     2.50</li> 
+          <li>Ελληνικός Διπλός/ double Greek    3.00</li>
+          <li>Φραππέ / Frappe 3.50</li>
+          <li>Freddo Esspresso 3.50 </li>
+          <li>Freddo Cappucino 3.50</li>
+          <li>Esspresso 3.0 </li>
+          <li>Cappucino 3.50 </li>
+          <li>Cappucino Διπλός/Cappucino Double 4.00 </li>
+
       </ul>
     </div>
 
-<br>    <button class="accordion">juice</button>
+<br>    <button class="accordion">ΡΟΦΗΜΑΤΑ / BEVERAGES </button>
 <div class="panel">
   <ul class="list"> 
-      <li>freddo</li> 
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
-  </ul>
+      <li>Κρυο τσάι / Ice Tea 3.00</li> 
+      <li>Σοκολάτα Μηχανής / Chocolate 4.00</li>
+      <li>Milk Shake 5.00</li>
+       </ul>
 </div> <br>
-<button class="accordion">beers</button>
+<button class="accordion">ΑΝΑΨΥΚΤΙΚΑ-ΧΥΜΟΙ / REFRESHMENTS-jUICES</button>
 <div class="panel">
   <ul class="list"> 
-      <li>freddo</li> 
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
+      <li>Αναψυκτικό / Refreshments 3.00 </li> 
+      <li>Χυμοί / juices 3.00 </li>
+      <li>Φυσικός Χυμός / Fresh Juice 5.00</li>
+      <li>Νερό / Bottle water 0.50</li>
+      <li>Σπιτική Λεμονάδα / Homemade Lemonade 5.00</li>
   </ul> <br>
 </div> <br>
-<button class="accordion">cocktails</button>
+<button class="accordion">ΠΑΓΩΤΑ-ΓΡΑΝΙΤΕΣ / ICE CREAM-WATER ICE</button>
 <div class="panel">
   <ul class="list"> 
-      <li>freddo</li> 
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
+      <li>Παγωτό (τιμή μπαλας) / Ice Cream (per scoop) 1.50</li> 
+      <li>Γρανίτα / Water ice 3.50</li>
+      
   </ul>
 </div> <br>
-<button class="accordion">Drinks</button>
+<button class="accordion">ENERGY DRINKS-SOFT DRINKS</button>
 <div class="panel">
   <ul class="list"> 
-      <li>freddo</li> 
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
-      <li>freddo</li>
+      <li>Red Bull 5.00</li> 
+      <li>Gordon's space 5.00</li>
+      <li>Three Cent's Pink Grapefruit Soda 5.00</li>
   </ul>
   
 </div>
 <br> <br> 
-
+</div> <br>
+<button class="accordion">ΜΠΥΡΕΣ / BEERS </button>
+<div class="panel">
+  <ul class="list"> 
+      <li>Μύθος / Mythos 4.00</li> 
+      <li>SOL / Corona 5.00</li>
+      <li>Bud 5.00</li>
+      <li>Buckler (χωρίς αλκοόλ / Buckler (alcohol free) 4.50</li>
+      <li>Βαρέλι μικρό Fix / Draught beer Fix S 3.50 </li>
+      <li>Βαρέλι μικρό Fix / Draught beer Fix L 4.50 </li>
+    </ul>
+  
+</div>
+<br> <br>
 
 </div><br> <br>
 
 <br> <br>
+<div class="weather">
 <a class="weatherwidget-io" href="https://forecast7.com/en/40d2623d50/psakoudia/"
  data-label_1="PSAKOUDIA" data-label_2="WEATHER" data-font="Roboto"
- data-icons="Climacons Animated" data-days="3" >PSAKOUDIA WEATHER</a>
+ data-icons="Climacons Animated" data-days="3" >PSAKOUDIA WEATHER</a></div> 
 <br> <br>
 
 <h3 class="follow">Follow Us </h3>
@@ -89,7 +100,7 @@
   <i class="fa-brands fa-facebook"></i>
   <i class="fa-brands fa-instagram"></i></div>
 <script>
-    var acc = document.getElementsByClassName("accordion" );
+  var acc = document.getElementsByClassName("accordion" );
     var i;
     
     for (i = 0; i < acc.length; i++) {
@@ -102,8 +113,8 @@
           panel.style.maxHeight = panel.scrollHeight + "px";
         } 
       });
-    }
-
+  } 
+  
     !function(d,s,id)
     {var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
       {js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}

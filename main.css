@@ -10,13 +10,11 @@
  
   }
   html { 
-    background: url(/pexels-mikhail-nilov-8332247.jpg) no-repeat center center fixed; 
+    background: url(/oldmenu/9.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
-   
-  }
+    background-size: cover; }
  
    
 #logo{ 
@@ -30,10 +28,8 @@
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  background-color: #F0F0F0;
-  width: 60%;
+  width:fit-content;
   border-radius: 30px;
- background: #e0e0e0; 
  
 }
 
@@ -45,55 +41,49 @@
       text-align: center;
   }
 
-
-
-  #subtitle{ 
+#subtitle{ 
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
       font-family: 'Lobster', cursive;
-     font-size: 10vw;
-    text-align: center;
-    text-decoration: underline;}
+      font-size: 10vw;
+      color:#fff;
+      text-align: center;
+      text-decoration: underline;}
 
 
-#products{ 
-    font-family: 'Lato', sans-serif;
-    margin-top: 2rem;
-    list-style: none;
-    text-align: center;
-    font-size: 2vw;
-}
+
 .accordion {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Roboto', sans-serif; 
   cursor: pointer;
   padding: 18px;
   position: relative;
   left: 50%;
+  color:#fff;
   transform: translate(-50%);
-  width: 50vw;
   text-align: left;
-  outline: none;
-  font-size: 5vw;
+  text-align: center;
+  font-size: 20px;
   transition: 0.4s;
   border-radius: 30px;
-  background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe,
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
 }
 
-.active, .accordion:hover {
-  background-color: #60ccd9;
-}
 
 .panel {
-  width:48vw;
+  width:60%;
   padding: 0 48px;
+  color: #fff;
   position: relative;
   left:50%;
   transform: translate(-50%);
+  border: 8px solid #805c2a;
+  border-radius: 25px;
   text-align: left;
   max-height: 0;
   overflow: hidden;
-  font-size: 3vw;
+  font-size:13px;
   font-weight: bold;
   transition: max-height 0.2s ease-out;
 }
@@ -126,7 +116,17 @@ color:red
 
 .follow{ 
   text-align: center;
+  color:#fff;
   text-decoration: underline;
   font-family: 'Lobster', cursive;
   font-size: 2rem;
+}
+
+.weather{ 
+max-width: 80%;
+position:relative;
+left:50%;
+transform: translate(-50%);
+background-color: #fff;
+border-radius: 25px;
 }
