@@ -10,7 +10,7 @@
  
   }
   html { 
-    background: url(9.jpg) no-repeat center center fixed; 
+    background: url(/oldmenu/9.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -72,10 +72,11 @@
 
 
 .panel {
-  width:60%;
+  width:50%;
   padding: 0 48px;
   color: #fff;
   position: relative;
+  text-align: center;
   left:50%;
   transform: translate(-50%);
   border: 8px solid #805c2a;
@@ -83,7 +84,7 @@
   text-align: left;
   max-height: 0;
   overflow: hidden;
-  font-size:13px;
+  font-size:COVER;
   font-weight: bold;
   transition: max-height 0.2s ease-out;
 }
@@ -129,4 +130,24 @@ left:50%;
 transform: translate(-50%);
 background-color: #fff;
 border-radius: 25px;
+}
+
+.happyhour{ 
+  text-align: center;
+font-family: lobster , cursive;
+color: #fff;
+}
+
+.atc{ 
+  text-align: center;
+  font-family: lobster , cursive;
+color: #3a9b88;
+
+}
+.ingredients{ 
+  text-align: left;
+  font-family: lobster , cursive;
+  font-size: 13px;
+  line-height: 14px;
+  color: #3a9b88;
 }
