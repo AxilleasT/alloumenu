@@ -1,279 +1,871 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
+
 <head>
-  <script src="https://kit.fontawesome.com/d588534abd.js" crossorigin="anonymous"></script>    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="logo.png">
-    <link rel="stylesheet" href="main.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Lobster&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <title>Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Allou Seaside Bar</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #202020;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #2c3e50;
+    }
+
+    .title {
+      color: #ffffff;
+    }
+
+    .accordion {
+      background: linear-gradient(135deg, #6dd5ed, #2193b0);
+      color: white;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      margin-left: 00%;
+      outline: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .active {
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+    }
+
+    .panel {
+      background-color: white;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 0 18px;
+    }
+
+    .panel.open {
+      padding: 1rem;
+    }
+
+    .menu-item {
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item strong {
+
+      display: block;
+      font-size: 16px;
+      color: #2c3e50;
+    }
+
+    .price {
+      background: #ff5e62;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-left: 10px;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #777;
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* Happy Hour Badge */
+    .happy-hour-badge {
+      background: linear-gradient(135deg, #f7971e, #ffd200, #f7971e);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite, pulseGlow 2s ease-in-out infinite;
+      border-radius: 16px;
+      padding: 18px 24px;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(247, 151, 30, 0.4);
+    }
+
+    .happy-hour-badge::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+      animation: sparkle 4s linear infinite;
+    }
+
+    .happy-hour-badge .badge-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #1a1a2e;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .happy-hour-badge .badge-title .icon {
+      font-size: 24px;
+    }
+
+    .happy-hour-badge .badge-time {
+      font-size: 15px;
+      font-weight: 700;
+      color: #3d2000;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 4px;
+    }
+
+    .happy-hour-badge .badge-deal {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 4px 20px rgba(247, 151, 30, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 4px 30px rgba(255, 210, 0, 0.7);
+      }
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Swimming Mermaids */
+    .mermaid {
+      position: fixed;
+      font-size: 40px;
+      opacity: 0.85;
+      z-index: 0;
+      pointer-events: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      filter: drop-shadow(0 0 8px rgba(109, 213, 237, 0.4));
+    }
+
+    .mermaid-1 {
+      top: 10%;
+      font-size: 36px;
+      animation: swimRight 18s linear infinite;
+      animation-delay: 0s;
+    }
+
+    .mermaid-2 {
+      top: 30%;
+      font-size: 28px;
+      opacity: 0.85;
+      animation: swimLeft 22s linear infinite;
+      animation-delay: -5s;
+    }
+
+    .mermaid-3 {
+      top: 55%;
+      font-size: 44px;
+      opacity: 0.85;
+      animation: swimRight 25s linear infinite;
+      animation-delay: -8s;
+    }
+
+    .mermaid-4 {
+      top: 75%;
+      font-size: 32px;
+      opacity: 0.85;
+      animation: swimLeft 20s linear infinite;
+      animation-delay: -3s;
+    }
+
+    .mermaid-5 {
+      top: 45%;
+      font-size: 24px;
+      opacity: 0.85;
+      animation: swimRight 28s linear infinite;
+      animation-delay: -12s;
+    }
+
+    .mermaid-6 {
+      top: 88%;
+      font-size: 38px;
+      opacity: 0.85;
+      animation: swimLeft 16s linear infinite;
+      animation-delay: -7s;
+    }
+
+    @keyframes swimRight {
+      0% {
+        left: -80px;
+        transform: scaleX(1) translateY(0px) rotate(0deg);
+      }
+
+      25% {
+        transform: scaleX(1) translateY(-15px) rotate(-3deg);
+      }
+
+      50% {
+        transform: scaleX(1) translateY(10px) rotate(2deg);
+      }
+
+      75% {
+        transform: scaleX(1) translateY(-8px) rotate(-2deg);
+      }
+
+      100% {
+        left: calc(100% + 80px);
+        transform: scaleX(1) translateY(0px) rotate(0deg);
+      }
+    }
+
+    @keyframes swimLeft {
+      0% {
+        right: -80px;
+        left: auto;
+        transform: scaleX(-1) translateY(0px) rotate(0deg);
+      }
+
+      25% {
+        transform: scaleX(-1) translateY(12px) rotate(3deg);
+      }
+
+      50% {
+        transform: scaleX(-1) translateY(-10px) rotate(-2deg);
+      }
+
+      75% {
+        transform: scaleX(-1) translateY(8px) rotate(2deg);
+      }
+
+      100% {
+        right: calc(100% + 80px);
+        left: auto;
+        transform: scaleX(-1) translateY(0px) rotate(0deg);
+      }
+    }
+
+    /* Bubbles from mermaids */
+    .bubble {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle at 30% 30%, rgba(109, 213, 237, 0.3), rgba(109, 213, 237, 0.05));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: bubbleRise linear infinite;
+    }
+
+    .bubble:nth-child(1) {
+      left: 15%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 8s;
+      animation-delay: -2s;
+    }
+
+    .bubble:nth-child(2) {
+      left: 35%;
+      width: 10px;
+      height: 10px;
+      animation-duration: 10s;
+      animation-delay: -4s;
+    }
+
+    .bubble:nth-child(3) {
+      left: 55%;
+      width: 5px;
+      height: 5px;
+      animation-duration: 7s;
+      animation-delay: -1s;
+    }
+
+    .bubble:nth-child(4) {
+      left: 75%;
+      width: 8px;
+      height: 8px;
+      animation-duration: 9s;
+      animation-delay: -6s;
+    }
+
+    .bubble:nth-child(5) {
+      left: 90%;
+      width: 7px;
+      height: 7px;
+      animation-duration: 11s;
+      animation-delay: -3s;
+    }
+
+    .bubble:nth-child(6) {
+      left: 25%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 6s;
+      animation-delay: -5s;
+    }
+
+    .bubble:nth-child(7) {
+      left: 65%;
+      width: 9px;
+      height: 9px;
+      animation-duration: 12s;
+      animation-delay: -8s;
+    }
+
+    .bubble:nth-child(8) {
+      left: 45%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 9s;
+      animation-delay: -7s;
+    }
+
+    @keyframes bubbleRise {
+      0% {
+        bottom: -20px;
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.4;
+      }
+
+      90% {
+        opacity: 0.15;
+      }
+
+      100% {
+        bottom: 105%;
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    }
+
+    /* Swimming Fish */
+    .fish {
+      position: fixed;
+      opacity: 0.7;
+      z-index: 0;
+      pointer-events: none;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .fish-1 {
+      top: 15%;
+      font-size: 26px;
+      animation: swimRight 14s linear infinite;
+      animation-delay: -2s;
+    }
+
+    .fish-2 {
+      top: 38%;
+      font-size: 20px;
+      opacity: 0.5;
+      animation: swimLeft 17s linear infinite;
+      animation-delay: -6s;
+    }
+
+    .fish-3 {
+      top: 62%;
+      font-size: 30px;
+      opacity: 0.6;
+      animation: swimRight 20s linear infinite;
+      animation-delay: -10s;
+    }
+
+    .fish-4 {
+      top: 82%;
+      font-size: 22px;
+      opacity: 0.55;
+      animation: swimLeft 13s linear infinite;
+      animation-delay: -4s;
+    }
+
+    .fish-5 {
+      top: 25%;
+      font-size: 18px;
+      opacity: 0.45;
+      animation: swimLeft 24s linear infinite;
+      animation-delay: -9s;
+    }
+
+    .fish-6 {
+      top: 50%;
+      font-size: 24px;
+      opacity: 0.6;
+      animation: swimRight 15s linear infinite;
+      animation-delay: -1s;
+    }
+
+    .fish-7 {
+      top: 70%;
+      font-size: 16px;
+      opacity: 0.4;
+      animation: swimRight 19s linear infinite;
+      animation-delay: -14s;
+    }
+
+    .fish-8 {
+      top: 92%;
+      font-size: 28px;
+      opacity: 0.55;
+      animation: swimLeft 16s linear infinite;
+      animation-delay: -11s;
+    }
+  </style>
 </head>
+
 <body>
-    
-   <img src="logo.png" id="logo"> 
-   
-    <br> <br>
-<div class="container"> 
-<div id="subtitle"> Menu </div>    
+  <!-- Swimming Mermaids -->
+  <div class="mermaid mermaid-1">🧜‍♀️</div>
+  <div class="mermaid mermaid-2">🧜‍♀️</div>
+  <div class="mermaid mermaid-3">🧜‍♀️</div>
+  <div class="mermaid mermaid-4">🧜‍♀️</div>
+  <div class="mermaid mermaid-5">🧜‍♀️</div>
+  <div class="mermaid mermaid-6">🧜‍♀️</div>
 
-    <button class="accordion">ΚΑΦΕΣ / COFFEE</button>
-    <div class="panel">
-      <ul class="list"> 
-          <li><span class="price"> 2.50€</span>Ελληνικός Μονός <br> Greek Coffee     </li> 
-          <li><span class="price"> 3.00€</span>Ελληνικός Διπλός<br> double Greek    </li>
-          <li> <span class="price"> 3.50€</span>Φραππέ <br> Frappe</li>
-          <li><span class="price"> 3.50€</span>Freddo Esspresso  </li>
-          <li><span class="price"> 3.50€</span>Freddo Cappucino </li>
-          <li><span class="price"> 3.00€</span>Esspresso </li>
-          <li><span class="price"> 3.50€</span>Cappucino  </li>
-          <li><span class="price"> 4.00€</span> Cappucino Διπλός<br>Cappucino Double </li>
+  <!-- Floating Bubbles -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
 
-      </ul>
+  <!-- Swimming Fish -->
+  <div class="fish fish-1">🐠</div>
+  <div class="fish fish-2">🐟</div>
+  <div class="fish fish-3">🐡</div>
+  <div class="fish fish-4">🐠</div>
+  <div class="fish fish-5">🐟</div>
+  <div class="fish fish-6">🐠</div>
+  <div class="fish fish-7">🐟</div>
+  <div class="fish fish-8">🐡</div>
+
+  <h1 class="title">Allou Seaside Bar</h1>
+  <h1 class="title">Μενού / Menu</h1>
+
+  <!-- Happy Hour Badge -->
+  <div class="happy-hour-badge">
+    <div class="badge-title"><span class="icon">🍹</span> Happy Hour <span class="icon">🍹</span></div>
+    <div class="badge-time">Every Night 19:00 – 22:00</div>
+    <div class="badge-deal">All Cocktails 7€</div>
+  </div>
+
+  <!-- Feel Strong -->
+  <button class="accordion"> Καφέδες / Coffees </button>
+  <div class="panel">
+    <h4> Κρύοι καφέδες / Cold Coffees </h4>
+    <div class="menu-item">
+      <div><strong>Freddo Espresso</strong></div><span class="price">4.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Freddo Cappuccino</strong> <span class="desc"> </span></div><span class="price">4.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φραπε / frappe</strong><span class="desc"> </span></div><span class="price">4.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φραπε με παγωτό / frappe with ice cream</strong><span class="desc"> </span></div><span
+        class="price">4.00€</span>
+    </div>
+    <h4> Ζεστοί καφέδες / Hot Coffees </h4>
+    <div class="menu-item">
+      <div><strong>Ελληνικός Μονός / Greek Coffee single</strong><span class="desc"> </span></div><span
+        class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Ελληνικός Διπλός / Greek Coffee double</strong><span class="desc"> </span></div><span
+        class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Espresso / Espresso single</strong><span class="desc"> </span> </span></div><span
+        class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Espresso Διπλός / Espresso double</strong><span class="desc"> </span> </span></div><span
+        class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Cappuccino / Cappuccino</strong><span class="desc"> </span> </span></div><span
+        class="price">2.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Αμερικάνο Μονός / Americano single</strong><span class="desc"> </span></span></div><span
+        class="price">2.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Αμερικάνο Διπλός / Americano double</strong><span class="desc"> </span> </span></div><span
+        class="price">3.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Νες καφέ Μονός / Nes caffe</strong><span class="desc"> </span></div><span class="price">2.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Latte machiato </strong><span class="desc"> </span></div><span class="price">3.00€</span>
+    </div>
+  </div>
+
+  <!-- Breakfast -->
+  <button class="accordion"> Ροφήματα / Beverages</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Κακάο / Cocoa</strong>
+      </div><span class="price">9.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Σοκολάτα / Chocolate </strong></div><span class="price">7.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Ζεστό τσάι / Hot Tea</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Ζεστό τσάι / Hot Tea</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Κρύα Σοκολάτα / Cold Chocolate</strong><span class="desc"></span></div><span
+        class="price">6.00€</span>
+    </div>
+  </div>
+
+  <!-- Waffles & Pancakes -->
+  <button class="accordion"> Αναψυκτικά / Refreshments</button>
+  <div class="panel">
+
+    <div class="menu-item">
+      <div><strong>Coca Cola</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Coca Cola Zero</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Λεμονάδα / Lemonade</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong> πορτοκαλάδα / Orangeade</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong> Γκαζόζα / Sprite</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φυσικός χυμός πορτοκάλι / Fresh orange juice</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong> Σοδα / Soda</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Κρύο τσάι / Iced tea</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Tonic</strong></div><span class="price">1.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Pink Grapefruit soda</strong></div><span class="price">1.50€</span>
+    </div>
+  </div>
+
+  <!-- Beers -->
+  <button class="accordion"> Μπύρες / Beers</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Mythos Draught 400ml </strong></div><span class="price">5.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Βεργίνα 330ml / Vergina 330ml</strong></div><span class="price">2.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Heineken 330ml</strong></div><span class="price">2.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Νύμφη 330ml / Nymfi 330ml</strong></div><span class="price">6.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Μπύρα χωρίς αλκοόλ 330ml / Alcohol Free Beer 330ml</strong></div><span class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Radler 330ml</strong></div><span class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Corona 330ml</strong></div><span class="price">2.50€</span>
     </div>
 
-<br>    <button class="accordion">ΡΟΦΗΜΑΤΑ / BEVERAGES </button>
-<div class="panel"> 
-  <ul class="list"> 
-      <li><span class="price">3.00€</span>Κρυο τσάι <br> Ice Tea  </li> 
-      <li><span class="price">4.00€</span> Σοκολάτα Μηχανής <br> Chocolate </li>
-      <li>Milk Shake <span class="price">5.00€</span> </li>
-       </ul>
-</div> <br>
-
-
-<button class="accordion">ΑΝΑΨΥΚΤΙΚΑ-ΧΥΜΟΙ / REFRESHMENTS-JUICES</button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price">3.00€</span>Αναψυκτικό <br> Refreshments  </li> 
-      <li><span class="price">3.00€</span> Χυμοί <br> juices </li>
-      <li><span class="price">5.00€</span>Φυσικός Χυμός <br> Fresh Juice </li>
-      <li><span class="price">0.50€</span>Νερό <br> Bottled water </li>
-      <li><span class="price">5.00€</span>Σπιτική Λεμονάδα <br> Homemade Lemonade </li>
-  </ul> <br>
-</div> <br>
-<button class="accordion">ΠΑΓΩΤΑ-ΓΡΑΝΙΤΕΣ / ICE CREAM-WATER ICE</button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price">1.50€</span>Παγωτό (τιμή μπαλας) <br> Ice Cream (per scoop) </li> 
-      <li>Γρανίτα / Water ice <span class="price">3.50€</span></li>
-      
-  </ul>
-</div> <br>
-<button class="accordion">ENERGY DRINKS-SOFT DRINKS</button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price">5.00€</span>Red Bull </li> 
-      <li><span class="price">5.00€</span>Gordon's space </li>
-      <li><span class="price">5.00€</span>Three Cent's Pink Grapefruit Soda  </li>
-  </ul>
-  
-</div>
-</div> <br>
-<button class="accordion">ΜΠΥΡΕΣ / BEERS </button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price">4.00€</span>Μύθος / Mythos  </li> 
-      <li><span class="price">5.00€</span>SOL / Corona  </li>
-      <li>Bud <span class="price">5.00€</span> </li>
-      <li><span class="price"> 4.50€</span>Buckler (χωρίς αλκοόλ)<br> Buckler (alcohol free) </li>
-      <li><span class="price"> 3.50€</span> Βαρέλι μικρό Fix <br> Draught beer Fix S</li>
-      <li><span class="price">4.50€</span>Βαρέλι μεγάλο Fix <br> Draught beer Fix L </li>
-    </ul>
   </div>
 
-</div>
-
-</div> <br>
-<button class="accordion">ΠΟΤΑ / ALCOHOL DRINKS </button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price"> 7.00€</span>Ποτό Απλό / Drink</li> 
-      <li><span class="price">8.00€</span>Ποτό special / Special Drink </li>
-      <li><span class="price"> 10.00€ </span>Ποτό Premium / Premium Drink</li>
-      <li><span class="price">70.00€</span>Φιάλη Απλή / Bottle </li>
-      <li><span class="price">80.00€</span>Φιάλη special / Special Bottle  </li>
-      <li><span class="price">120.00€</span>Φιάλη premium / Premium Bottle  </li>
-      <li><span class="price">2.50€</span>Σφηνάκια / Shots  </li>
-      <li><span class="price">4.00€</span>Υποβρύχιο </li>
-    </ul>
-  </div>
-
-</div>
-</div> <br>
-<button class="accordion">ΚΡΑΣΙΑ / WINE </button>
-<div class="panel">
-  <ul class="list"> 
-      <li>Sangria <span class="price">  5.00€ </span></li> 
-      <li>Κρασια / wine <span class="price">  5.00€ </span></li>      
-  </div>
-</div><br> 
-</div> <br>
-<button class="accordion">ΣΑΜΠΑΝΙΕΣ / CHAMPAGNE</button>
-<div class="panel">
-  <ul class="list"> 
-      <li><span class="price">   50.00€ </span>  Gancia Moscato</li> 
-      <li><span class="price"> 70.00€  </span>  Asti Martini </li>
-      <li><span class="price">  8.00€ </span>  Asti Martini ατομικό / Serving </li>
-      <li><span class="price">  120.00€ </span>  Moet </li>
-      <li><span class="price">  140.00€ </span>  Moet Ice  </li>
-      <li><span class="price"> 120.00€   </span>  Belaire </li>
-  </ul>
-  </div>
-</div>
-<br>
-</div><h3 class="atc"> All time Classics</h3>
-<button class="accordion">COCKTAILS</button>
-<div class="panel">
-  <ul class="list"> 
-      <li>NEGRONI <span class="price">  8.00€ </span> </li> 
-      <li>MOJITO <span class="price"> 8.00€</span>  </li>
-      <li>CUBA LIBRE <span class="price"> 8.00€</span>  </li>
-      <li>MARGARITA <span class="price"> 8.00€</span>  </li>
-      <li>MAI TAI <span class="price"> 8.00 €</span>  </li>
-      <li>DAIQUIRI <span class="price"> 8.00 €</span>  </li>
-      <li>CAIPIRINHA <span class="price"> 8.00€</span>  </li> 
-      <li>PALOMA <span class="price"> 8.00€ </span> </li>
-      <li>MOSCOW MULE <span class="price"> 8.00€</span>  </li>
-      <li>OLD FASHIONED <span class="price"> 8.00€</span>  </li>
-      <li>COSMOPOLITAN <span class="price"> 8.00 €</span>  </li>
-      <li>BLACK RUSSIA <span class="price"> 8.00 €</span>  </li>
-      <li>PINA COLADA <span class="price"> 8.00€</span>  </li> 
-      <li>APEROL SPRITZ <span class="price"> 8.00€</span>  </li>
-      <li>LONG ISLAND <span class="price"> 8.00€</span>  </li>
-      <li>APPLE MARTINI <span class="price"> 8.00€</span>  </li>
-      <h3 class="happyhour"> Every Day <br> 20:00 - 22:00<br> 5.00€</h3><br>
-  </ul>
-  </div>
-</div>
-
-<br> <br>
-
-
-</div><h3 class="atc"> Signature</h3>
-<button class="accordion">COCKTAILS</button>
-<div class="panel">
-  <ul class="list"> 
-    <li>Soul of the run <span class="price">9.00€ </span></li> 
-      <p class="ingredients">Rum,Lime,Fresh pineapple,Sugar pears,
-            <br> spices,Ender Flowers syrup</p>  
-    <li>Italy i'm coming <span class="price">8.00€ </span></li> 
-        <p class="ingredients">Aperol,Champagne, Pink Grapefruit</p>  
-    <li>Porn Star <span class="price">8.00€ </span></li> 
-      <p class="ingredients">Vodka,Vanilla syrup, Champagne,
-          <br> ,Lime Passion fruit juice</p>  
-    <li>Skyfall <span class="price">9.00€ </span></li> 
-      <p class="ingredients">Vodka,lime juice, Hibiscus syrup
-         <br>Pink grapefruit syrup, Passion Fruit Puree </p>  
-    <li>Pink Lady <span class="price">9.00€ </span></li> 
-      <p class="ingredients">Gin, Lime juice, blueberry puree, almond
-        <br>Raspberry syrup, Orange bitter</p>  
-    <li>Lost in Carribean <span class="price">11.00€ </span>0</li> 
-        <p class="ingredients">White Rum,Black Rum, Lie juice
-        <br>Passion Fruit puree, Coconut milk, Red pepper</p>  
-    <li>Kiss-Kiss <span class="price">8.00€ </span></li> 
-        <p class="ingredients">Vodka, Mozart Chocolate liquer,Strawberry syrup, milk cream
-        </p>  
-        <li>Gin Bliss <span class="price">9.00€ </span></li> 
-        <p class="ingredients">Gin, lime juice, Sugar syrup, Pineapple Juice, Fresh ginger, Fresh Rosemary
-        </p> 
-        <li>Chios calling <span class="price">8.00€ </span></li> 
-        <p class="ingredients">Chios mastic, Vodka, Lime juice, Sugar syrup, Cucumber slice, Thymus
-        </p> 
-        <li>Kinky Mexico <span class="price">10.0€ </span>0</li> 
-        <p class="ingredients">Tequila reposado, Lime juice, Lemon marmelada with ginger and rose petals
-        </p> 
-        <br>
-  </ul>
-  </div>
-</div>
-<br>
-<button class="accordion">SALADS</button>
-<div class="panel">
-  <ul class="list"> 
-    <li>Caesar's  <span class= "price">6.50€ </span></li> 
-      <p class="ingredients">Iceberg,τοματίνια, κοτόπουλο, παρμεζάνα, κρουτόν, dressing caesar's</p>  
-      <p class="salads">Iceberg,cherry tomatoes, chicken, parmesan, crouton,  caesar's dressing</p>  
-    <li>Chef <span class= "price">6.50€ </span></li> 
-        <p class="ingredients">Μαρούλι, icebergm αγγουράκι ψιλοκομμένο, ντοματίνια, ζαμπόν , γκούντα, αυγό, dressing chef</p>  
-        <p class="salads">Lettuce, iceberg, cucumber,tomato, ham, gouda, egg , dressing chef</p>
-          
-        <li> Φρουτοσαλάτα <span class= "price">5.00€ </span></li> 
-        <p class="ingredients">Fruit Salad</p>
-
-        <li> Γιαούρτι με μέλι <span class= "price">3.50€ </span></li> 
-        <p class="ingredients">Yoghurt & honey</p>
-
-        <li> Γιαούρτι με φρούτα <span class= "price">5.00€ </span></li> 
-        <p class="ingredients">Yoghurt & Fruits</p>
-      
-  
-      </ul>
-  </div>
-</div>
-<br>
-<button class="accordion">FOOD MENU</button>
-<div class="panel">
-  <ul class="list"> 
-    <li>Club Sandwich  <span class="price"> 6.00€ </span></li> 
-      <p class="ingredients">Ζαμπόν, γκούντα, ντομάτα, μαρούλι,σως</p><p class="served-with">(Σερβίρεται με τηγανητές πατάτες)</p>   
-      <p class="salads">Ham, gouda, tomato,lettuce,sauce</p><p class="served-with">(Acompanied by fried potatoes)</p>
-    <li>Chiky's <span class="price"> 7.00€ </span></li> 
-        <p class="ingredients">μπουκίτσες κοτόπουλο με τηγανητές πατατες και σως</p>  
-        <p class="salads">chicken bites with fried potatoes and sauce</p>
-    <li>Burger <span class="price"> 6.00€ </span></li>
-        <p class="ingredients">Μπιφτέκι, μαρούλι, ντομάτα, μπέικον,cheddar</p>  <p class="served-with">(Συνοδέυεται απο πατάτες και σώς)</p>   
-        <p class="salads">Burger , lettuce, tomato, bacon, cheddar</p> <p class="served-with">(Acompanied by fried potatoes & sauce) 
-    <li>Toast <span class="price"> 3.00€ </span></li>
-          <p class="ingredients">Δύο (2) τεμάχια</p>   
-          <p class="salads">Two (2) pieces</p> </ul>  
+  <!-- Drinks -->
+  <button class="accordion"> Ποτά / Drinks</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Απλό Ποτό / Simple Drink </strong></div><span class="price">8.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Σπέσιαλ Ποτό / Special Drink</strong></div><span class="price">9.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Premium Ποτό / Premium Drink</strong></div><span class="price">10.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Σφηνάκια / Shots</strong></div><span class="price">3.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φιάλη Απλή / Simple Bottle</strong></div><span class="price">80.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φιάλη Σπέσιαλ / Special Bottle</strong></div><span class="price">90.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Φιάλη Premium / Premium Bottle</strong></div><span class="price">110.00€</span>
+    </div>
 
   </div>
-</div>
+
+  <!-- Burgers -->
+  <button class="accordion"> Κρασιά / Wines</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Sauvignon Blanc Κωνσταντάρα / Sauvignon Blanc Konstantaras</strong></div><span
+        class="price">30.0€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Grapes rose</strong><span class="desc">Κτήμα Πυργάκη / Pirgaki Estate</span></div><span
+        class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Μαλαγουζια / Malagousia </strong><span class="desc">Κτήμα Αργυρίου / Argiriou estate </span></div>
+      <span class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Ατομικό Μπουκάλι / Single serving Bottle</strong><span class="desc"> </span></div><span
+        class="price">2.50€</span>
+    </div>
+  </div>
+
+  <!-- Desserts -->
+  <button class="accordion"> Αφρώδη / Sparkling</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Asti Martini 200ml</strong></div><span class="price">30.0€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Bianconero rose 200ml</strong></div><span class="price">6.00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Bellaire 750ml</strong></div><span class="price">5.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Asti Martini 750ml</strong></div><span class="price">5.50€</span>
+    </div>
+  </div>
+
+  <!-- Drinks -->
+  <button class="accordion"> Drinks</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Coffee</strong></div><span class="price">2.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Fresh Juice</strong></div><span class="price">3.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Smoothies</strong></div><span class="price">4.50€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Soft Drinks</strong></div><span class="price">2.00€</span>
+    </div>
+  </div>
 
 
-<br> <br>
-<div class="weather">
-  <a class="weatherwidget-io" href="https://forecast7.com/en/40d2623d50/psakoudia/" data-label_1="Psakoudia" 
-  data-label_2="today's weather" 
-  data-icons="Climacons Animated" data-days="3" data-theme="pure" >Psakoudia today's weather</a></div> 
-<br> <br>
 
-<h3 class="follow">Follow Us </h3>
-<div class="icons"> 
-  <br> <a href="https://www.facebook.com/AllouBeachBar">
-  <i class="fa-brands fa-facebook"></i> </a> 
-  <a href="https://www.instagram.com/allou.beachbar/"> 
-  <i class="fa-brands fa-instagram"></i></a> </div>
+  <!-- All Time Classic Cocktails -->
+  <button class="accordion"> All Time Classic Cocktails</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Pornstar</strong><span class="desc">Vodka, Passion Fruit, Lime, Sugar</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Daiquiri</strong><span class="desc">Rum, Sugar, Lime, Strawberry or Passion Fruit</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Cosmopolitan</strong><span class="desc">Vodka, Triple Sec, Lime, Cranberry</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Piña Colada</strong><span class="desc">Rum, Lime, Pineapple Juice, Coconut</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Aperol Spritz</strong><span class="desc">Aperol, Prosecco, Soda</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Kiss-Kiss</strong><span class="desc">Vodka, Strawberry, Chocolate, Evaporated Milk</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Caipirinha</strong><span class="desc">Cachaça, Lime, Sugar</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Negroni</strong><span class="desc">Gin, Martini Rosato, Campari</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Margarita</strong><span class="desc">Tequila, Triple Sec, Lime</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Cuba Libre</strong><span class="desc">Rum, Lime, Coca Cola</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Mai Tai</strong><span class="desc">Rum, Almond, Pineapple, Lime</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Mojito</strong><span class="desc">Rum, Lime, Sugar, Strawberry or Passion Fruit</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Old Fashioned</strong><span class="desc">Whiskey, Sugar</span></div><span class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Long Island</strong><span class="desc">Gin, Rum, Vodka, Tequila, Lime, Triple Sec, Ice Tea
+          Peach</span></div><span class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Kyoto</strong><span class="desc">Gin, Triple Sec, Lime, Passion</span></div><span
+        class="price">8,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Paloma</strong><span class="desc">Tequila, Lime, Pink Soda</span></div><span
+        class="price">8,00€</span>
+    </div>
+  </div>
 
+  <!-- Signature Cocktails -->
+  <button class="accordion"> Signature Cocktails</button>
+  <div class="panel">
+    <div class="menu-item">
+      <div><strong>Allou Seaside</strong><span class="desc">Bacardi, Coconut, Lime, Pineapple</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Woo Woo</strong><span class="desc">Vodka, Cranberry, Schnapps, Crème de Cassis</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Psakoudia Sunset</strong><span class="desc">Vodka, Passion Fruit, Lime, Pink Grapefruit</span></div>
+      <span class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Greek Martini</strong><span class="desc">Gin, Greek Ouzo, Vermouth, Mastiha</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Summer Dream</strong><span class="desc">Gin, Vermouth, Lime, Melon</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Breaking Hearts</strong><span class="desc">Whiskey, Drambuie</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Alcoholic Refreshment</strong><span class="desc">Vodka, Lime, Elderflower, Tonic</span></div><span
+        class="price">9,00€</span>
+    </div>
+    <div class="menu-item">
+      <div><strong>Pink Lady</strong><span class="desc">Gin, Lime, Almond, Forest Berries</span></div><span
+        class="price">9,00€</span>
+    </div>
+  </div>
 
- <div class="copyright"> <h5> copyright ©2022 Allou Beach Bar
-   <br> made by <a href="https://axilleast.netlify.app">  AxilleasT.</a>
- </h5> </div><br>
-<script>
-  var acc = document.getElementsByClassName("accordion" );
-    var i;
-    
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
+  <script>
+    const acc = document.getElementsByClassName("accordion");
+    for (let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
         this.classList.toggle("active");
-        var panel = this.nextElementSibling;
+        const panel = this.nextElementSibling;
         if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
+          panel.classList.remove("open");
         } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
-        } 
+          panel.classList.add("open");
+        }
       });
-  } 
-  
-    !function(d,s,id)
-    {var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
-      {js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}
-      (document,'script','weatherwidget-io-js');
-
-    </script>
+    }
+  </script>
 </body>
+
 </html>
